@@ -1,4 +1,5 @@
 # RepoCleaner (V1.0.1)
+[![PyPI](https://img.shields.io/pypi/v/repocleaner.svg)](https://pypi.org/project/repocleaner/)
 
 RepoCleaner was developed by Fahd El Haraka. For inquiries or further information, you can reach out through the following channels:
 
