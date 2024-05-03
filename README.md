@@ -14,12 +14,6 @@ Before using RepoCleaner, make sure you have the following:
 
 - Python 3.x
 - GitHub API access token. You can generate a token [here](https://github.com/settings/tokens).
-- Environment variables set for your GitHub username and token. You can set them like this:
-
-    ```bash
-    export GITHUB_USERNAME='YOUR_USERNAME'
-    export GITHUB_TOKEN='YOUR_TOKEN'
-    ```
 
 ## Usage
 
