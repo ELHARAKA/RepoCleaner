@@ -6,16 +6,19 @@ import pyfiglet # type: ignore
 def display_splash():
     ascii_art = pyfiglet.figlet_format("RepoCleaner")
     print(ascii_art)
-
-    print("RepoCleaner by Fahd El Haraka ©")
-    print("Email: fahd@web3dev.ma")
-    print("Telegram: @thisiswhosthis")
-    print("Website: https://web3dev.ma")
-    print("GitHub: https://github.com/ELHARAKA")
-    print("--------------------------------------------------------")
-    print("Unexpected bad things will happen if you don’t read this!")
-    print("Deleting repositories is irreversible. Make sure you have backed up any important data.")
-    print("--------------------------------------------------------\n")
+    print("RepoCleaner by Fahd El Haraka")
+    print("Version: v1.1")
+    print("Contact Information:")
+    print("  Email: fahd@web3dev.ma")
+    print("  Telegram: @thisiswhosthis")
+    print("  Website: https://web3dev.ma")
+    print("  GitHub: https://github.com/ELHARAKA")
+    print("-" * 60)
+    print("Important Notice:")
+    print("  * Unexpected issues may occur if the instructions are not followed.")
+    print("  * Deleting repositories is irreversible.")
+    print("  * Ensure you have backed up all important data before proceeding.")
+    print("-" * 60 + "\n")
 
 def clear_screen():
     """Clears the terminal screen."""
