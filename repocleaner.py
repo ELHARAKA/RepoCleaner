@@ -17,17 +17,10 @@ def display_splash():
     print("Deleting repositories is irreversible. Make sure you have backed up any important data.")
     print("--------------------------------------------------------\n")
 
-display_splash()
-
-username = os.getenv('GITHUB_USERNAME')
-token = os.getenv('GITHUB_TOKEN')
-
-base_url = 'https://api.github.com'
-
-headers = {
-    'Authorization': f'token {token}',
-    'Accept': 'application/vnd.github.v3+json'
-}
+def get_credentials():
+    username = input("Enter your GitHub username: ")
+    token = input("Enter your GitHub personal access token: ")
+    return username, token
 
 def backup_repo(repo_url):
     """Clones the repository to a local directory as a backup."""
@@ -43,13 +36,19 @@ def backup_repo(repo_url):
     except subprocess.CalledProcessError:
         print(f"Failed to backup {repo_name}.")
 
-def fetch_repos(username, token):
+def list_repositories(repositories):
+    """Lists all repositories."""
+    print("Available repositories:")
+    for repo in repositories:
+        print(repo['name'])
+
+def fetch_repos(username, headers):
     """Fetch all repositories of the user."""
     repos = []
     page = 1
     while True:
         url = f"https://api.github.com/users/{username}/repos?type=all&per_page=100&page={page}"
-        response = requests.get(url, headers={'Authorization': f'token {token}', 'Accept': 'application/vnd.github.v3+json'})
+        response = requests.get(url, headers=headers)
         if response.status_code == 200:
             data = response.json()
             if not data:
@@ -61,25 +60,25 @@ def fetch_repos(username, token):
             break
     return repos
 
-def list_repositories(repositories):
-    """Lists all repositories."""
-    print("Available repositories:")
-    for repo in repositories:
-        print(repo['name'])
-
-def delete_repo(username, token, repo):
+def delete_repo(username, repo, headers):
     """Delete a specific repository."""
     url = f"https://api.github.com/repos/{username}/{repo['name']}"
-    response = requests.delete(url, headers={'Authorization': f'token {token}'})
+    response = requests.delete(url, headers=headers)
     if response.status_code == 204:
         print(f"Successfully deleted {repo['name']}")
     else:
         print(f"Failed to delete {repo['name']}: {response.status_code} {response.reason}")
 
 def main():
+    display_splash()
+    username, token = get_credentials()
+    headers = {
+        'Authorization': f'token {token}',
+        'Accept': 'application/vnd.github.v3+json'
+    }
 
     while True:
-        repos = fetch_repos(username, token)
+        repos = fetch_repos(username, token, headers)
         if not repos:
             print("No repositories found.")
             return
@@ -119,7 +118,7 @@ def main():
             confirm = input("Confirm deletion of these repositories? (yes/no): ")
             if confirm.lower() == 'yes':
                 for repo in repos_to_delete:
-                    delete_repo(username, token, repo)
+                    delete_repo(username, token, repo, headers)
             else:
                 print("Deletion cancelled.")
         else:
