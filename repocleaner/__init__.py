@@ -110,7 +110,7 @@ def main():
 
         repos_to_delete = []
         if choice == '1':
-            confirm = input("WARNING: You are about to delete ALL repositories. This cannot be undone. Type 'yes' to confirm: ")
+            confirm = input("WARNING: You are about to delete ALL repositories. This cannot be undone. Type 'yes' to confirm or 'no' to cancel: ")
             if confirm.lower() == 'yes':
                 repos_to_delete = [repo for repo in repos]
             else:
@@ -135,7 +135,7 @@ def main():
             print("Reviewing repositories to delete:")
             for repo in repos_to_delete:
                 print(repo['name'])
-            confirm = input("Confirm deletion of these repositories? (yes/no): ")
+            confirm = input("Confirm deletion of these repositories? Type 'yes' to confirm or 'no' to cancel: ")
             if confirm.lower() == 'yes':
                 for repo in repos_to_delete:
                     delete_repo(username, repo, headers)
