@@ -78,16 +78,14 @@ def fetch_repos(username, headers):
 
 def main():
     username, token = get_credentials()
-    clear_screen()  # Clear the screen after credentials are entered
-
-    display_splash()  # Display the splash after clearing the screen
+    clear_screen()
+    display_splash()
 
     headers = {
         'Authorization': f'token {token}',
         'Accept': 'application/vnd.github.v3+json'
     }
 
-    # Initial display of options
     print("Select option:\n")
     print("1. Delete all forked repositories.")
     print("2. Delete all archived repositories.")
@@ -95,7 +93,7 @@ def main():
     print("4. Exit.\n")
 
     while True:
-        choice = input("Enter your choice (1, 2, 3, or 4):\n")
+        choice = input()
 
         if choice == '4':
             print("Exiting program.")
