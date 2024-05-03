@@ -133,7 +133,7 @@ def main():
         else:
             print("No matching repositories to delete.")
 
-        print("\nSelect another option or exit:\n")
+        print("Select another option:\n")
 
 if __name__ == "__main__":
     main()
