@@ -7,7 +7,7 @@ def display_splash():
     ascii_art = pyfiglet.figlet_format("RepoCleaner")
     print(ascii_art)
     print("Developed by Fahd El Haraka")
-    print("Version: v1.0")
+    print("Version: v1.0.0")
     print("Contact Information:")
     print("  Email: fahd@web3dev.ma")
     print("  Telegram: @thisiswhosthis")
