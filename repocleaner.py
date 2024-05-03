@@ -78,33 +78,33 @@ def fetch_repos(username, headers):
 
 def main():
     username, token = get_credentials()
-    clear_screen()
-    display_splash()
+    clear_screen()  # Clear the screen after credentials are entered
+
+    display_splash()  # Display the splash after clearing the screen
 
     headers = {
         'Authorization': f'token {token}',
         'Accept': 'application/vnd.github.v3+json'
     }
 
-    while True:
-        repos = fetch_repos(username, headers)
-        if not repos:
-            print("No repositories found.")
-            return
+    # Initial display of options
+    print("Select option:\n")
+    print("1. Delete all forked repositories.")
+    print("2. Delete all archived repositories.")
+    print("3. Delete specific repositories.")
+    print("4. Exit.\n")
 
-        print("Select option:\n")
-        print("1. Delete all forked repositories.")
-        print("2. Delete all archived repositories.")
-        print("3. Delete specific repositories.")
-        print("4. Exit.\n")
+    while True:
         choice = input("Enter your choice (1, 2, 3, or 4):\n")
 
         if choice == '4':
             print("Exiting program.")
             break
 
-        if choice == '3':
-            list_repositories(repos)
+        repos = fetch_repos(username, headers)
+        if not repos:
+            print("No repositories found.")
+            continue
 
         repos_to_delete = []
         if choice == '1':
@@ -112,6 +112,7 @@ def main():
         elif choice == '2':
             repos_to_delete = [repo for repo in repos if repo['archived']]
         elif choice == '3':
+            list_repositories(repos)
             repo_names = input("Enter repository names to delete, separated by commas: ")
             repo_names = [name.strip() for name in repo_names.split(',')]
             repos_to_delete = [repo for repo in repos if repo['name'] in repo_names]
@@ -122,6 +123,7 @@ def main():
                 for repo in repos_to_delete:
                     backup_repo(repo['clone_url'])
 
+            print("Reviewing repositories to delete:")
             for repo in repos_to_delete:
                 print(repo['name'])
             confirm = input("Confirm deletion of these repositories? (yes/no): ")
@@ -132,7 +134,8 @@ def main():
                 print("Deletion cancelled.")
         else:
             print("No matching repositories to delete.")
-        continue
+
+        print("\nSelect another option or exit:\n")
 
 if __name__ == "__main__":
     main()
