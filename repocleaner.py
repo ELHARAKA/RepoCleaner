@@ -58,7 +58,6 @@ def fetch_repos(username, headers):
     while True:
         url = f"https://api.github.com/search/repositories?q=user:{username}&per_page=100&page={page}"
         response = requests.get(url, headers=headers)
-        print(f"Request URL: {url}")
         if response.status_code == 200:
             data = response.json().get('items', [])
             if not data:
