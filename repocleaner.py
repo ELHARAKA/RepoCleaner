@@ -6,8 +6,8 @@ import pyfiglet # type: ignore
 def display_splash():
     ascii_art = pyfiglet.figlet_format("RepoCleaner")
     print(ascii_art)
-    print("RepoCleaner by Fahd El Haraka")
-    print("Version: v1.1")
+    print("Developed by Fahd El Haraka")
+    print("Version: v1.0")
     print("Contact Information:")
     print("  Email: fahd@web3dev.ma")
     print("  Telegram: @thisiswhosthis")
