@@ -78,7 +78,7 @@ def main():
     }
 
     while True:
-        repos = fetch_repos(username, token, headers)
+        repos = fetch_repos(username, headers)
         if not repos:
             print("No repositories found.")
             return
@@ -118,7 +118,7 @@ def main():
             confirm = input("Confirm deletion of these repositories? (yes/no): ")
             if confirm.lower() == 'yes':
                 for repo in repos_to_delete:
-                    delete_repo(username, token, repo, headers)
+                    delete_repo(username, repo, headers)
             else:
                 print("Deletion cancelled.")
         else:
