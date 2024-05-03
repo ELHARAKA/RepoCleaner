@@ -3,15 +3,7 @@ import subprocess
 import requests
 import pyfiglet # type: ignore
 
-def clear_screen():
-    """Clears the terminal screen."""
-    if os.name == 'nt':
-        subprocess.run('cls', shell=True)
-    else:
-        subprocess.run('clear', shell=True)
-
 def display_splash():
-    """Displays the splash screen."""
     ascii_art = pyfiglet.figlet_format("RepoCleaner")
     print(ascii_art)
 
@@ -25,12 +17,16 @@ def display_splash():
     print("Deleting repositories is irreversible. Make sure you have backed up any important data.")
     print("--------------------------------------------------------\n")
 
+def clear_screen():
+    """Clears the terminal screen."""
+    if os.name == 'nt':
+        subprocess.run('cls', shell=True)
+    else:
+        subprocess.run('clear', shell=True)
+
 def get_credentials():
-    """Gets credentials from the user and clears the screen after."""
     username = input("Enter your GitHub username: ")
     token = input("Enter your GitHub personal access token: ")
-    clear_screen()
-    display_splash()
     return username, token
 
 def backup_repo(repo_url):
@@ -81,8 +77,9 @@ def fetch_repos(username, headers):
     return repos
 
 def main():
-    display_splash()
     username, token = get_credentials()
+    clear_screen()
+    display_splash()
 
     headers = {
         'Authorization': f'token {token}',
