@@ -13,7 +13,9 @@ RepoCleaner is a tool designed to help you manage your GitHub repositories effic
 Before using RepoCleaner, make sure you have the following:
 
 - Python 3.x
-- GitHub API access token. You can generate a token [here](https://github.com/settings/tokens).
+- GitHub API access token. You can generate a token [here](https://github.com/settings/tokens). Ensure your token has the following scopes:
+  - `repo`: Full control of private repositories and access to public repositories.
+  - `delete_repo`: Permission to delete repositories.
 
 ## Usage
 
