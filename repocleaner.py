@@ -42,19 +42,19 @@ def list_repositories(repositories):
     for repo in repositories:
         print(repo['name'])
 
-def fetch_repos(headers):
-    """Fetch all repositories of the user."""
+def fetch_repos(username, token):
+    """Fetch all repositories of the user, both public and private."""
+    headers = {
+        'Authorization': f'token {token}',
+        'Accept': 'application/vnd.github.v3+json'
+    }
     repos = []
     page = 1
     while True:
-        url = f"https://api.github.com/user/repos?type=all&per_page=100&page={page}"
+        url = f"https://api.github.com/search/repositories?q=user:{username}&per_page=100&page={page}"
         response = requests.get(url, headers=headers)
-        print(f"Requesting page {page}...")
-        print(f"Response status code: {response.status_code}")
-        print(f"Response data: {response.json()}")
-
         if response.status_code == 200:
-            data = response.json()
+            data = response.json().get('items', [])
             if not data:
                 break
             repos.extend(data)
@@ -62,7 +62,6 @@ def fetch_repos(headers):
         else:
             print(f"Failed to fetch repositories: {response.status_code} {response.reason}")
             break
-
     return repos
 
 def delete_repo(username, repo, headers):
@@ -83,7 +82,7 @@ def main():
     }
 
     while True:
-        repos = fetch_repos(headers)
+        repos = fetch_repos(username,headers)
         if not repos:
             print("No repositories found.")
             return
