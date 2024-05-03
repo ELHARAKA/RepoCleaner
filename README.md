@@ -36,7 +36,7 @@ Before using RepoCleaner, make sure you have the following:
 2. Run the script:
 
     ```bash
-    python repo_cleaner.py
+    python repocleaner.py
     ```
 
 3. Follow the on-screen instructions to select the repositories you want to delete.
