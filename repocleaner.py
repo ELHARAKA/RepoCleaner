@@ -42,6 +42,15 @@ def list_repositories(repositories):
     for repo in repositories:
         print(repo['name'])
 
+def delete_repo(username, repo, headers):
+    """Delete a specific repository."""
+    url = f"https://api.github.com/repos/{username}/{repo['name']}"
+    response = requests.delete(url, headers=headers)
+    if response.status_code == 204:
+        print(f"Successfully deleted {repo['name']}")
+    else:
+        print(f"Failed to delete {repo['name']}: {response.status_code} {response.reason}")
+
 def fetch_repos(username, token):
     """Fetch all repositories of the user, both public and private."""
     headers = {
@@ -54,6 +63,7 @@ def fetch_repos(username, token):
         url = f"https://api.github.com/search/repositories?q=user:{username}&per_page=100&page={page}"
         response = requests.get(url, headers=headers)
         print(f"Request URL: {url}")
+        print(f"Request Headers: {headers}")
         print(f"Response status code: {response.status_code}")
         print(f"Response content: {response.content}")
         if response.status_code == 200:
@@ -67,25 +77,18 @@ def fetch_repos(username, token):
             break
     return repos
 
-def delete_repo(username, repo, headers):
-    """Delete a specific repository."""
-    url = f"https://api.github.com/repos/{username}/{repo['name']}"
-    response = requests.delete(url, headers=headers)
-    if response.status_code == 204:
-        print(f"Successfully deleted {repo['name']}")
-    else:
-        print(f"Failed to delete {repo['name']}: {response.status_code} {response.reason}")
-
 def main():
     display_splash()
     username, token = get_credentials()
+    print(f"Debug: Username: {username}, Token: {token}")
+
     headers = {
         'Authorization': f'token {token}',
         'Accept': 'application/vnd.github.v3+json'
     }
 
     while True:
-        repos = fetch_repos(username,headers)
+        repos = fetch_repos(username, headers)
         if not repos:
             print("No repositories found.")
             return
