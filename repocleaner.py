@@ -47,7 +47,7 @@ def fetch_repos(username, headers):
     repos = []
     page = 1
     while True:
-        url = f"https://api.github.com/users/{username}/repos?type=all&per_page=100&page={page}"
+        url = f"https://api.github.com/users/{username}/repos?type=all&per_page=100&page={page}&visibility=all"
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             data = response.json()
