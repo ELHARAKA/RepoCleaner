@@ -84,12 +84,12 @@ def main():
             print("No repositories found.")
             return
 
-        print("Select option:")
-        print("1. Delete all forked repositories")
-        print("2. Delete all archived repositories")
-        print("3. Delete specific repositories")
-        print("4. Exit")
-        choice = input("Enter your choice (1, 2, 3, or 4): ")
+        print("Select option:\n1. "\
+            "Delete all forked repositories\n2. "\
+            "Delete all archived repositories\n3. "\
+            "Delete specific repositories\n4. Exit"
+            )
+        choice = input("Enter your choice (1, 2, 3, or 4):\n5")
 
         if choice == '4':
             print("Exiting program.")
