@@ -14,7 +14,7 @@ RepoCleaner is a powerful command-line tool designed to help you efficiently man
 
 To use RepoCleaner, you need:
 
-- Python 3.6 or higher.
+- Python 3.10 or higher.
 - A GitHub API access token with the following permissions:
   - `repo`: Full control of private repositories and access to public repositories.
   - `delete_repo`: Permission to delete repositories.
