@@ -54,8 +54,9 @@ def delete_repo(username, repo, headers):
 def fetch_repos(username, token):
     """Fetch all repositories of the user, both public and private."""
     headers = {
-        'Authorization': f'token {token}',
+        'Authorization': f'Bearer {token}',
         'Accept': 'application/vnd.github.v3+json'
+        'X-GitHub-Api-Version: 2022-11-28'
     }
     repos = []
     page = 1
@@ -83,8 +84,9 @@ def main():
     print(f"Debug: Username: {username}, Token: {token}")
 
     headers = {
-        'Authorization': f'token {token}',
+        'Authorization': f'Bearer {token}',
         'Accept': 'application/vnd.github.v3+json'
+        'X-GitHub-Api-Version: 2022-11-28'
     }
 
     while True:
