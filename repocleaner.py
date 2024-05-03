@@ -42,12 +42,12 @@ def list_repositories(repositories):
     for repo in repositories:
         print(repo['name'])
 
-def fetch_repos(username, headers):
+def fetch_repos(headers):
     """Fetch all repositories of the user."""
     repos = []
     page = 1
     while True:
-        url = f"https://api.github.com/users/{username}/repos?type=all&per_page=100&page={page}"
+        url = f"https://api.github.com/user/repos?type=all&per_page=100&page={page}"
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             data = response.json()
@@ -58,14 +58,6 @@ def fetch_repos(username, headers):
         else:
             print(f"Failed to fetch repositories: {response.status_code} {response.reason}")
             break
-
-    private_url = f"https://api.github.com/user/repos?type=all&per_page=100&page=1"
-    private_response = requests.get(private_url, headers=headers)
-    if private_response.status_code == 200:
-        private_repos = private_response.json()
-        repos.extend(private_repos)
-    else:
-        print(f"Failed to fetch private repositories: {private_response.status_code} {private_response.reason}")
 
     return repos
 
@@ -87,7 +79,7 @@ def main():
     }
 
     while True:
-        repos = fetch_repos(username, headers)
+        repos = fetch_repos(headers)
         if not repos:
             print("No repositories found.")
             return
