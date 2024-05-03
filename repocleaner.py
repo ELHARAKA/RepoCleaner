@@ -90,7 +90,7 @@ def main():
     print("1. Delete all forked repositories.")
     print("2. Delete all archived repositories.")
     print("3. Delete specific repositories.")
-    print("4. Exit.\n")
+    print("4. Exit.")
 
     while True:
         choice = input()
