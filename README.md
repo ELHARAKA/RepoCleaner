@@ -1,8 +1,4 @@
-# RepoCleaner
-
-A Python script to clean up your GitHub repositories.
-
-## Introduction
+# RepoCleaner: Introduction
 
 RepoCleaner is a tool designed to help you manage your GitHub repositories efficiently. With RepoCleaner, you can delete forked repositories, archived repositories, or specific repositories in bulk.
 
