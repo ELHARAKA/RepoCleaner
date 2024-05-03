@@ -51,22 +51,14 @@ def delete_repo(username, repo, headers):
     else:
         print(f"Failed to delete {repo['name']}: {response.status_code} {response.reason}")
 
-def fetch_repos(username, token):
+def fetch_repos(username, headers):
     """Fetch all repositories of the user, both public and private."""
-    headers = {
-        'Authorization': f'Bearer {token}',
-        'Accept': 'application/vnd.github.v3+json'
-        'X-GitHub-Api-Version: 2022-11-28'
-    }
     repos = []
     page = 1
     while True:
         url = f"https://api.github.com/search/repositories?q=user:{username}&per_page=100&page={page}"
         response = requests.get(url, headers=headers)
         print(f"Request URL: {url}")
-        print(f"Request Headers: {headers}")
-        print(f"Response status code: {response.status_code}")
-        print(f"Response content: {response.content}")
         if response.status_code == 200:
             data = response.json().get('items', [])
             if not data:
@@ -81,12 +73,10 @@ def fetch_repos(username, token):
 def main():
     display_splash()
     username, token = get_credentials()
-    print(f"Debug: Username: {username}, Token: {token}")
 
     headers = {
-        'Authorization': f'Bearer {token}',
+        'Authorization': f'token {token}',
         'Accept': 'application/vnd.github.v3+json'
-        'X-GitHub-Api-Version: 2022-11-28'
     }
 
     while True:
