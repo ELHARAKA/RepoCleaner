@@ -1,4 +1,11 @@
-# RepoCleaner
+# RepoCleaner (V1.0.1)
+
+RepoCleaner was developed by Fahd El Haraka. For inquiries or further information, you can reach out through the following channels:
+
+- **Telegram**: [@Thisiswhosthis](https://t.me/Thisiswhosthis)
+- **Website**: [Web3Dev](https://web3dev.ma)
+
+Feel free to contact for any issues, suggestions, or contributions to the project.
 
 ## Introduction
 
@@ -35,7 +42,12 @@ Once installed, you can run RepoCleaner from the command line:
 ```bash
 repocleaner
 ```
-- Follow the on-screen instructions to select the repositories you wish to manage or delete.
+
+### Steps to Follow:
+- **Launch the Tool**: Start RepoCleaner by typing the command above in your terminal.
+- **Follow On-Screen Instructions**: The tool will guide you through selecting repositories you wish to manage or delete.
+- **Backup Recommendations**: Before deleting any repositories, it is strongly recommended to back up your data. This ensures that you do not lose any important information permanently.
+- **Select Options Carefully**: Choose the appropriate option based on whether you want to delete all, forked, archived, or specific repositories. Each choice has significant consequences and cannot be undone.
 
 ## Contributing
 

@@ -7,7 +7,7 @@ def display_splash():
     ascii_art = pyfiglet.figlet_format("RepoCleaner")
     print(ascii_art)
     print("Developed by Fahd El Haraka")
-    print("Version: v1.0.0")
+    print("Version: v1.0.1")
     print("Contact Information:")
     print("  Email: fahd@web3dev.ma")
     print("  Telegram: @thisiswhosthis")
@@ -90,15 +90,16 @@ def main():
     }
 
     print("Select option:\n")
-    print("1. Delete all forked repositories.")
-    print("2. Delete all archived repositories.")
-    print("3. Delete specific repositories.")
-    print("4. Exit.\n")
+    print("1. Delete all repositories.")
+    print("2. Delete all forked repositories.")
+    print("3. Delete all archived repositories.")
+    print("4. Delete specific repositories.")
+    print("5. Exit.\n")
 
     while True:
-        choice = input()
+        choice = input("Enter your choice: ")
 
-        if choice == '4':
+        if choice == '5':
             print("Exiting program.")
             break
 
@@ -109,10 +110,17 @@ def main():
 
         repos_to_delete = []
         if choice == '1':
-            repos_to_delete = [repo for repo in repos if repo['fork']]
+            confirm = input("WARNING: You are about to delete ALL repositories. This cannot be undone. Type 'yes' to confirm: ")
+            if confirm.lower() == 'yes':
+                repos_to_delete = [repo for repo in repos]
+            else:
+                print("Deletion cancelled.")
+                continue
         elif choice == '2':
-            repos_to_delete = [repo for repo in repos if repo['archived']]
+            repos_to_delete = [repo for repo in repos if repo['fork']]
         elif choice == '3':
+            repos_to_delete = [repo for repo in repos if repo['archived']]
+        elif choice == '4':
             list_repositories(repos)
             repo_names = input("Enter repository names to delete, separated by commas: ")
             repo_names = [name.strip() for name in repo_names.split(',')]
