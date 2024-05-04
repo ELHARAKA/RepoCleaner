@@ -6,8 +6,6 @@ RepoCleaner was developed by Fahd El Haraka. For inquiries or further informatio
 - **Telegram**: [@Thisiswhosthis](https://t.me/Thisiswhosthis)
 - **Website**: [Web3Dev](https://web3dev.ma)
 
-Feel free to contact for any issues, suggestions, or contributions to the project.
-
 ## Introduction
 
 RepoCleaner is a powerful command-line tool designed to help you efficiently manage your GitHub repositories. With RepoCleaner, you can effortlessly delete forked, archived, or specific repositories in bulk, ensuring your GitHub account remains clean and organized.
