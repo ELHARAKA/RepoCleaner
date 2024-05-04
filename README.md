@@ -48,9 +48,5 @@ repocleaner
 - **Backup Recommendations**: Before deleting any repositories, it is strongly recommended to back up your data. This ensures that you do not lose any important information permanently.
 - **Select Options Carefully**: Choose the appropriate option based on whether you want to delete all, forked, archived, or specific repositories. Each choice has significant consequences and cannot be undone.
 
-## Contributing
-
-- Contributions to RepoCleaner are welcome! Please refer to the contributing guidelines in the repository for more details on how to contribute.
-
 ## License
 This project is licensed under the [MIT License](LICENSE).
